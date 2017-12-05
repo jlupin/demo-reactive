@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>2.0.0.M6</version>
+    </parent>
+
+    <artifactId>users-client</artifactId>
+
+    <repositories>
+        <!-- Repository is also accessible using https connection: -->
+        <!-- https://support.jlupin.com/maven2/ -->
+        <repository>
+            <id>jlupin-central</id>
+            <name>jlupin</name>
+            <url>http://support.jlupin.com/maven2/</url>
+        </repository>
+
+        <repository>
+            <id>spring-milestones-central</id>
+            <name>spring-milestones</name>
+            <url>http://repo.spring.io/milestone/</url>
+        </repository>
+    </repositories>
+
+    <pluginRepositories>
+        <!-- Repository is also accessible using https connection: -->
+        <!-- https://support.jlupin.com/maven2/ -->
+        <pluginRepository>
+            <id>jlupin-central</id>
+            <name>jlupin</name>
+            <url>http://support.jlupin.com/maven2/</url>
+        </pluginRepository>
+
+        <pluginRepository>
+            <id>spring-milestones-central</id>
+            <name>spring-milestones</name>
+            <url>http://repo.spring.io/milestone/</url>
+        </pluginRepository>
+    </pluginRepositories>
+
+    <properties>
+        <jlupin.skipDeploy>true</jlupin.skipDeploy>
+        <jlupin.next.server.maven.plugin.version>1.0.2</jlupin.next.server.maven.plugin.version>
+
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-webflux</artifactId>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>com.jlupin</groupId>
+                <artifactId>jlupin-next-server-maven-plugin</artifactId>
+                <version>${jlupin.next.server.maven.plugin.version}</version>
+                <executions>
+                    <execution>
+                        <id>jlupin-deploy</id>
+                        <phase>pre-integration-test</phase>
+                        <goals>
+                            <goal>deploy</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>

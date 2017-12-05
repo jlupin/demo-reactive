@@ -1,0 +1,39 @@
+<div class="row justify-content-center header-container">
+  <h1 class="text-center">Users</h1>
+</div>
+
+<div class="row justify-content-center form-container">
+  <form class="form" #convertForm="ngForm" (ngSubmit)="create()">
+    <div class="form-group">
+      <div class="form-row">
+        <div class="input-group">
+          <input class="form-control" placeholder="Name" [(ngModel)]="nameValue" name="nameValue" type="text"/>
+          <input class="form-control" placeholder="Surname" [(ngModel)]="surnameValue" name="surnameValue" type="text"/>
+
+          <button class="btn btn-primary" type="submit">Create</button>
+        </div>
+
+      </div>
+      {{ createResult }}
+    </div>
+  </form>
+</div>
+
+<div class="row justify-content-center form-container">
+  <button class="btn btn-success" (click)="get()">Get</button>
+</div>
+
+<div *ngIf="result" class="row justify-content-center">
+  <table class="table table-striped">
+    <tbody>
+      <tr *ngFor="let row of result">
+        <th scope="row">{{ row.id }}</th>
+        <td>{{ row.name + " " + row.surname }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<div *ngIf="errorMessage" class="alert alert-danger" role="alert">
+  {{ errorMessage }}
+</div>
